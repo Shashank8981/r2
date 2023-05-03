@@ -37,25 +37,25 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Main ID
         run: |
-          python MicrosoftRewardsBot.py --headless --fast --emailalerts --accounts "${{ secrets.REWARDS_CREDENTIALS }}"
+          python MicrosoftRewardsBot.py --headless --fast --emailalerts --accounts "${{ secrets.REWARDS_CREDENTIALS }}" > logs_1.txt
       - name: first id
         run: |
-         python MicrosoftRewardsBot.py --headless --fast --emailalerts --accounts "${{ secrets.FIRST }}"
+         python MicrosoftRewardsBot.py --headless --fast --emailalerts --accounts "${{ secrets.FIRST }}" > logs_2.txt
       - name: Second ID
         run: |
-          python MicrosoftRewardsBot.py --headless --fast --emailalerts --accounts "${{ secrets.SECOND }}"
+          python MicrosoftRewardsBot.py --headless --fast --emailalerts --accounts "${{ secrets.SECOND }}" > logs_3.txt
       - name: Third ID
         run: |
-          python MicrosoftRewardsBot.py --headless --fast --emailalerts --accounts "${{ secrets.THIRD }}"
+          python MicrosoftRewardsBot.py --headless --fast --emailalerts --accounts "${{ secrets.THIRD }}" > logs_3.txt
       - name: Fourth Ik
         run: |
-          python MicrosoftRewardsBot.py --headless --fast --emailalerts --accounts "${{ secrets.FOURTH }}"
+          python MicrosoftRewardsBot.py --headless --fast --emailalerts --accounts "${{ secrets.FOURTH }}" > logs_4.txt
       - name: Fifth
         run: |
-          python MicrosoftRewardsBot.py --headless --fast --emailalerts --accounts "${{ secrets.FIVE }}"
+          python MicrosoftRewardsBot.py --headless --fast --emailalerts --accounts "${{ secrets.FIVE }}" > logs_5.txt
       - name: SIXTH Ik
         run: |
-          python MicrosoftRewardsBot.py --headless --fast --emailalerts --accounts "${{ secrets.SIX }}"
+          python MicrosoftRewardsBot.py --headless --fast --emailalerts --accounts "${{ secrets.SIX }}" > logs_6.txt
       - name: Collect logs
         uses: actions/upload-artifact@v3
         with:
@@ -65,7 +65,7 @@ jobs:
       - name: Concatenate logs
         run: |
             for i in {1..10}; do
-            if [ -f "logs.txt" ]; then
+            if [ -f "logs_${i}.txt" ]; then
             cat "logs.txt" >> all_logs.txt
             fi
             done
